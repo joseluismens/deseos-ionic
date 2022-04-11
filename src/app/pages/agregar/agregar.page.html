@@ -1,9 +1,38 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>agregar</ion-title>
+<ion-header no-border>
+  <ion-toolbar color="dark">
+    <ion-buttons>
+      <ion-back-button color="tertiary"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{lista.titulo}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content color="dark">
+  <ion-list no-border color="dark">
+    <ion-item color="dark">
+      <ion-label position="floating">Nuevo item</ion-label>
+      <ion-input
+        type="text"
+        [(ngModel)]="nombreItem"
+        (keyup.enter)="agregarItem()"
+      ></ion-input>
+    </ion-item>
+  </ion-list>
 
+  <ion-list color="dark">
+    <ion-list-header>
+      <ion-label color="light">Tareas por hacer</ion-label>
+    </ion-list-header>
+
+    <ion-item color="dark" *ngFor="let item of lista.items"
+    class="animated fadeInDown">
+      <ion-checkbox
+        slot="start"
+        color="tertiary"
+        [(ngModel)]="item.estado" 
+        (ionChange)="cambioCheck(item)"
+      ></ion-checkbox>
+      <ion-label> {{item.desc}}</ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
